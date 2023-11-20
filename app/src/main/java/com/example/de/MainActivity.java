@@ -15,19 +15,27 @@ public class MainActivity extends AppCompatActivity {
     Button FADD;
     EditText ABIT;
     EditText BBIT;
+    EditText CBIT;
     TextView ANS;
+    TextView carry;
     int a ;
     int b;
+    int c;
     int hsum;
+    int hcarry;
+    int fsum;
+    int fcarry;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        HADD = findViewById(R.id.FADD);
-        FADD = findViewById(R.id.HADD);
+        HADD = findViewById(R.id.HADD);
+        FADD = findViewById(R.id.FADD);
         ANS = findViewById(R.id.ANS);
         ABIT = findViewById(R.id.ABIT);
         BBIT = findViewById(R.id.BBIT);
+        CBIT = findViewById(R.id.CBIT);
+        carry = findViewById(R.id.carry);
         HADD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,8 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     b = Integer.parseInt(BBIT.getText().toString());
                 }
-                hsum = Hadd(a , b);
-                ANS.setText("sum is"  + hsum);
+                hsum = Hsum(a , b);
+                ANS.setText("sum is" + " " +  + hsum);
+                hcarry=Hcarry(a,b);
+                carry.setText("carry is" + " " + + hcarry);
 
 
             }
@@ -63,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     b = Integer.parseInt(BBIT.getText().toString());
                 }
+                if(CBIT.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "ENTER C BIT VALUE", Toast.LENGTH_SHORT).show();
+                }else {
+                    c = Integer.parseInt(CBIT.getText().toString());
+                }
+                fsum =  Fsum(a,b,c);
+                ANS.setText("SUM IS " + " " + fsum);
+                fcarry =Fcarry(a,b,c);
+                carry.setText("carry is" + " " + fcarry);
 
 
 
@@ -73,11 +92,43 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public int Fadd(int a , int b) {
-        return 0;
+    public int Fsum(int x , int y , int z) {
+        int hs;
+     hs = Hsum(x,y);
+     int t;
+     if(hs ==z){
+         t =hs;
+
+     }else {
+         t = -1;
+     }
+     if(t ==1 || t==0) {
+         return 0;
+     }
+     else {
+         return 1;
+     }
+
+
+
+       // return 0;
     }
 
-    public int  Hadd(int x , int y) {
+    public int Fcarry(int x , int y , int z) {
+
+        int hss = z * Hsum(x,y);
+        int hcc =   Hcarry(x,y) ;
+        if ( hss==1 || hcc ==1) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+
+        //return 0;
+    }
+
+    public int  Hsum(int x , int y) {
         int z;
         if ( x == y  ) {
              z = x;
@@ -88,6 +139,22 @@ public class MainActivity extends AppCompatActivity {
             return 0;
         } else {
             return 1;
+        }
+        //return 0;
+    }
+
+    public  int Hcarry(int x , int y) {
+        int z ;
+        if(x==y) {
+            z =x;
+        }else {
+            z = -1;
+        }
+
+        if ( z==1 ) {
+            return 1;
+        }else{
+            return 0;
         }
         //return 0;
     }
