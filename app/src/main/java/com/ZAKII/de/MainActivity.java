@@ -1,4 +1,4 @@
-    package com.MZK.de;
+    package com.ZAKII.de;
 
     import androidx.appcompat.app.AppCompatActivity;
 
