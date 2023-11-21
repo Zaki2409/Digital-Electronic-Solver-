@@ -1,4 +1,4 @@
-    package com.BUJJI.de;
+    package com.BUJJII.de;
 
     import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +29,7 @@
         TextView carry;
         RadioButton HALFADDER;
         RadioButton FULLADDER;
+        RadioButton CLEAR;
         RadioGroup OPERATOR;
        //Switch CHOOSE;
         int a ;
@@ -55,6 +56,7 @@
             FULLADDER =findViewById(R.id.FULLADDER);
             OPERATOR = findViewById(R.id.OPERATOR);
             devinfo = findViewById(R.id.devinfo);
+            CLEAR = findViewById(R.id.CLEAR);
 
             /*if(HALFADDER.isChecked()){
                 ABIT.setVisibility(View.VISIBLE);
@@ -96,13 +98,22 @@
                                String bbitn = BBIT.getText().toString();
 
                                boolean checkk = validateinfo (abitn , bbitn);
-                               if(checkk =true) {
-                                   SUBMIT.setEnabled(false);
-                               }else {
-                                   SUBMIT.setEnabled(true);
-                               }
+                               if(checkk ==false) {
+                                   Toast.makeText(MainActivity.this, "INVALID BIT VALUE", Toast.LENGTH_SHORT).show();
+                                   //SUBMIT.setEnabled(false);
+                                   ANS.setText("");
+                                   carry.setText("");
 
-                                if(ABIT.getText().toString().equals("")){
+                               } else {
+                                   a = Integer.parseInt(ABIT.getText().toString());
+                                   b = Integer.parseInt(BBIT.getText().toString());
+                                   hsum = Hsum(a , b);
+                                   ANS.setText("sum is" + " " +  + hsum);
+                                   hcarry=Hcarry(a,b);
+                                   carry.setText("carry is" + " " + + hcarry);
+
+                               }
+                               /* if(ABIT.getText().toString().equals("")){
                                     Toast.makeText(MainActivity.this, "ENTER A BIT VALUE", Toast.LENGTH_SHORT).show();
                                 }else {
                                     a = Integer.parseInt(ABIT.getText().toString());
@@ -112,19 +123,23 @@
                                 }else {
                                     b = Integer.parseInt(BBIT.getText().toString());
                                 }
+                                hsum = Hsum(a , b);
+                                   ANS.setText("sum is" + " " +  + hsum);
+                                   hcarry=Hcarry(a,b);
+                                   carry.setText("carry is" + " " + + hcarry);
+                                */
+
                                // validateinfo(ABIT,BBIT);
 
-                                hsum = Hsum(a , b);
-                                ANS.setText("sum is" + " " +  + hsum);
-                                hcarry=Hcarry(a,b);
-                                carry.setText("carry is" + " " + + hcarry);
+
                             }
                         });
 
 
 
 
-                    } else if (FULLADDER.isChecked()) {
+                    }
+                    else if (FULLADDER.isChecked()) {
                         ABIT.setVisibility(View.VISIBLE);
                         BBIT.setVisibility(View.VISIBLE);
                         CBIT.setVisibility(View.VISIBLE);
@@ -149,12 +164,24 @@
 
 
                                 boolean check = validateinfo2(abitn, bbitn, cbitn);
-                                if(check ==true) {
-                                    SUBMIT.setEnabled(false);
-                                }else {
-                                    SUBMIT.setEnabled(true);
+                                if(check == false) {
+                                    Toast.makeText(MainActivity.this, "INVALID BIT VALUE", Toast.LENGTH_SHORT).show();
+                                    //SUBMIT.setEnabled(false);
+                                    ANS.setText("");
+                                    carry.setText("");
+
+                                } else {
+                                    a = Integer.parseInt(ABIT.getText().toString());
+                                    b = Integer.parseInt(BBIT.getText().toString());
+                                    c = Integer.parseInt(CBIT.getText().toString());
+                                    fsum =  Fsum(a,b,c);
+                                    ANS.setText("SUM IS " + " " + fsum);
+                                    fcarry =Fcarry(a,b,c);
+                                    carry.setText("carry is" + " " + fcarry);
                                 }
-                                if(ABIT.getText().toString().equals("")){
+
+
+                               /*if(ABIT.getText().toString().equals("")){
                                     Toast.makeText(MainActivity.this, "ENTER A BIT VALUE", Toast.LENGTH_SHORT).show();
                                 }else {
                                     a = Integer.parseInt(ABIT.getText().toString());
@@ -173,10 +200,20 @@
                                 fsum =  Fsum(a,b,c);
                                 ANS.setText("SUM IS " + " " + fsum);
                                 fcarry =Fcarry(a,b,c);
-                                carry.setText("carry is" + " " + fcarry);
+                                carry.setText("carry is" + " " + fcarry);*/
 
                             }
                         });
+
+                    }
+
+                    else if (CLEAR.isChecked()) {
+                        SUBMIT.setEnabled(true);
+                        carry.setText("");
+                        ANS.setText("");
+                        ABIT.setText("");
+                        BBIT.setText("");
+                        CBIT.setText("");
 
                     }
 
@@ -259,36 +296,29 @@
         //FUCNTIONS
 
         private boolean validateinfo(String u , String v) {
-        if (!u.matches("[0-1]")) {
+        if (u.matches("[0-1]") && v.matches("[0-1]")) {
+
+
+            return true;
+        } else {
             ABIT.requestFocus();
             ABIT.setError("please ENTER A BINARY DIGIT");
             return false;
-        } else if (!v.matches("[0-1]")) {
-            BBIT.requestFocus();
-            BBIT.setError("please ENTER A BINARY DIGIT");
-            return false;
-
         }
 
-            return false;
+
         }
         private boolean  validateinfo2(String u , String v , String w) {
-            if (!u.matches("[0-1]")) {
+            if (u.matches("[0-1]") && ( v.matches("[0-1]")) && (w.matches("[0-1]")))  {
+
+                return true;
+            } else {
                 ABIT.requestFocus();
                 ABIT.setError("please ENTER A BINARY DIGIT");
                 return false;
-            } else if (!v.matches("[0-1]")) {
-                BBIT.requestFocus();
-                BBIT.setError("please ENTER A BINARY DIGIT");
-                return false;
-
-            }else if (!w.matches("[0-1]")) {
-                CBIT.requestFocus();
-                CBIT.setError("please ENTER A BINARY DIGIT");
-                return false;
-
             }
-        return false;
+
+
         }
         public int Fsum(int x , int y , int z) {
             int hs;
