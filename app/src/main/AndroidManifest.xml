@@ -13,7 +13,7 @@
         android:theme="@style/Theme.DE"
         tools:targetApi="31">
         <activity
-            android:name="com.ZAKII.de.MainActivity"
+            android:name="com.BUJJI.de.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
