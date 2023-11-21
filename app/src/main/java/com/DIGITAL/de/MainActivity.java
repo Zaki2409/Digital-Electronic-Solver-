@@ -1,4 +1,4 @@
-    package com.BUJJII.de;
+    package com.DIGITAL.de;
 
     import androidx.appcompat.app.AppCompatActivity;
 
@@ -301,8 +301,9 @@
 
             return true;
         } else {
+
             ABIT.requestFocus();
-            ABIT.setError("please ENTER A BINARY DIGIT");
+            //ABIT.setError("please ENTER A BINARY DIGIT");
             return false;
         }
 
@@ -314,7 +315,7 @@
                 return true;
             } else {
                 ABIT.requestFocus();
-                ABIT.setError("please ENTER A BINARY DIGIT");
+                //ABIT.setError("please ENTER A BINARY DIGIT");
                 return false;
             }
 
