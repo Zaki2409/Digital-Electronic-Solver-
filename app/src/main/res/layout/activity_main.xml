@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@drawable/ic_launcher_foreground"
     android:backgroundTint="@color/white"
-    tools:context="com.zaki.de.MainActivity">
+    tools:context="com.MZK.de.MainActivity"
+    android:background="@drawable/background"
+
+    >
 
 
     <EditText
@@ -18,6 +19,7 @@
         android:hint="ENTER  A  BIT"
         android:inputType="number|numberDecimal"
         android:maxLength="1"
+        android:textColor="@color/material_dynamic_neutral_variant0"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +36,7 @@
         android:hint="ENTER  B  VALUE"
         android:inputType="number|numberDecimal"
         android:maxLength="1"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/design_default_color_on_secondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ABIT"
         app:layout_constraintHorizontal_bias="1.0"
@@ -141,6 +143,8 @@
         android:id="@+id/SUBMIT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:enabled="false"
+        android:soundEffectsEnabled="true"
         android:text="SUBMIT"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"

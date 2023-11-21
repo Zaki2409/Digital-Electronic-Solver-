@@ -1,4 +1,4 @@
-    package com.zaki.de;
+    package com.MZK.de;
 
     import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,11 +7,9 @@
     import android.os.Bundle;
     import android.view.View;
     import android.widget.Button;
-    import android.widget.CompoundButton;
     import android.widget.EditText;
     import android.widget.RadioButton;
     import android.widget.RadioGroup;
-    import android.widget.Switch;
     import android.widget.TextView;
     import android.widget.Toast;
 
@@ -73,12 +71,24 @@
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
 
+
                     if (HALFADDER.isChecked()) {
                         ABIT.setVisibility(View.VISIBLE);
                         BBIT.setVisibility(View.VISIBLE);
                         CBIT.setVisibility(View.INVISIBLE); // or View.GONE if needed
 
+                        if((ABIT.equals("1") || ABIT.equals("0") ) && (BBIT.equals("0") || BBIT.equals("1")) ){
+                            SUBMIT.setEnabled(true);
+                            //Toast.makeText(MainActivity.this, " ", Toast.LENGTH_SHORT).show();
+                        }  else {
+                            Toast.makeText(MainActivity.this, "ENTER A VALID BINARY BIT", Toast.LENGTH_SHORT).show();
+                            //SUBMIT.isEnabled();
+                            SUBMIT.setEnabled(true);
+                        }
+
                         SUBMIT.setOnClickListener(new View.OnClickListener() {
+
+
                             @Override
                             public void onClick(View v) {
                                 if(ABIT.getText().toString().equals("")){
@@ -105,7 +115,13 @@
                         ABIT.setVisibility(View.VISIBLE);
                         BBIT.setVisibility(View.VISIBLE);
                         CBIT.setVisibility(View.VISIBLE);
-
+                        if((ABIT.equals(1) || ABIT.equals(0) )&& (BBIT.equals(0) || BBIT.equals(1)) && (CBIT.equals(1) || CBIT.equals(0)) ){
+                            SUBMIT.setEnabled(true);
+                        } else {
+                            Toast.makeText(MainActivity.this, "ENTER A VALID BINARY BIT", Toast.LENGTH_SHORT).show();
+                           // SUBMIT.setEnabled(true);
+                            SUBMIT.setEnabled(true);
+                        }
                         SUBMIT.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
